@@ -6,6 +6,6 @@ git reset --hard origin/master
 php artisan migrate --force
 php artisan route:cache
 php artisan config:cache
-chown -R apache:www ./
-chmod 700 -R ./storage/
-chmod 700 -R ./bootstrap/cache/
+sudo chown -R apache:www ./
+sudo chmod 700 -R ./storage/
+sudo chmod 700 -R ./bootstrap/cache/
