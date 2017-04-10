@@ -65,8 +65,8 @@ class Download extends Command
             //            'exclude_replies'  => true,
         ];
 
-        if (Cache::has('since_id')) {
-            $since_id = Cache::get('since_id', 0);
+        if (Storage::disk('local')->exists('since_id')) {
+            $since_id = Storage::disk('local')->get('since_id');
             $options['since_id'] = $since_id;
             //            $this->info('since_id: ' . $since_id);
         } else {
@@ -104,7 +104,7 @@ class Download extends Command
             }
         });
 
-        Cache::forever('since_id', $since_id);
+        Storage::disk('local')->put('since_id', $since_id);
         Log::info('since_id: ' . $since_id);
     }
 
