@@ -1,0 +1,32 @@
+sudo: false
+language: php
+
+php:
+- '7.0'
+
+before_install:
+
+- eval `ssh-agent -s`
+- chmod 600 ~/.ssh/config
+- openssl aes-256-cbc -K $encrypted_eb0ee7951b97_key -iv $encrypted_eb0ee7951b97_iv -in travis_key.pem.enc -out travis_key.pem -d
+- cp travis_key ~/.ssh/
+- chmod 600 ~/.ssh/travis_key
+- ssh-add ~/.ssh/travis_key
+
+before_script:
+- travis_retry composer self-update
+- travis_retry composer install --no-interaction --prefer-source --no-progress --no-suggest
+
+branches:
+  only:
+  - master
+
+cache:
+  directories: vendor
+
+script:
+- vendor/bin/phpunit
+
+after_success:
+   - 'if [ "$TRAVIS_PULL_REQUEST" = "false" ]; then ssh -p $DEPLOY_PORT -i ~/.ssh/travis_key -o StrictHostKeyChecking=no $DEPLOY_USER@$DEPLOY_HOST
+  "cd $DEPLOY_PATH;bash -s" < deploy.sh; fi'
