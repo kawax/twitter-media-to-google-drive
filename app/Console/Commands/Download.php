@@ -9,6 +9,7 @@ use mpyw\Co\CURLException;
 use mpyw\Cowitter\Client;
 use mpyw\Cowitter\HttpException;
 
+use Log;
 use Storage;
 use Cache;
 
@@ -67,7 +68,7 @@ class Download extends Command
         if (Cache::has('since_id')) {
             $since_id = Cache::get('since_id', 0);
             $options['since_id'] = $since_id;
-            $this->info('since_id: ' . $since_id);
+            //            $this->info('since_id: ' . $since_id);
         } else {
             $since_id = 0;
         }
@@ -102,12 +103,12 @@ class Download extends Command
         });
 
         Cache::forever('since_id', $since_id);
-        $this->info('since_id: ' . $since_id);
+        Log::info('since_id: ' . $since_id);
     }
 
     private function photo($tweet, $medium)
     {
-        $this->info($tweet->user->name . ' - ' . $medium->media_url_https);
+        Log::info($tweet->user->name . ' - ' . $medium->media_url_https);
 
         /**
          * @var \mpyw\Cowitter\Media $responce
@@ -130,7 +131,7 @@ class Download extends Command
             return $v->bitrate;
         })->last();
 
-        $this->info($tweet->user->name . ' - ' . $video->url);
+        Log::info($tweet->user->name . ' - ' . $video->url);
 
         /**
          * @var \mpyw\Cowitter\Media $responce
