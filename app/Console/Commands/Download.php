@@ -73,6 +73,8 @@ class Download extends Command
             $since_id = 0;
         }
 
+        Log::info('since_id: ' . $since_id);
+
         $tweets = $this->twitter->get('statuses/home_timeline', $options);
 
         $tweets = collect($tweets);
@@ -95,9 +97,9 @@ class Download extends Command
             $media = $tweet->extended_entities->media;
             foreach ($media as $medium) {
                 if ($medium->type == 'photo') {
-                    $this->photo($tweet, $medium);
+                    $this->photo($medium);
                 } elseif ($medium->type == 'video') {
-                    $this->video($tweet, $medium);
+                    $this->video($medium);
                 }
             }
         });
@@ -106,22 +108,20 @@ class Download extends Command
         Log::info('since_id: ' . $since_id);
     }
 
-    private function photo($tweet, $medium)
+    /**
+     * @param $medium
+     */
+    private function photo($medium)
     {
-        Log::info($tweet->user->name . ' - ' . $medium->media_url_https);
+        $url = $medium->media_url_https;
 
-        /**
-         * @var \mpyw\Cowitter\Media $responce
-         */
-        $responce = $this->twitter->getOut($medium->media_url_https);
-
-        $url = parse_url($medium->media_url, PHP_URL_PATH);
-        $file = pathinfo($url, PATHINFO_BASENAME);
-
-        Storage::cloud()->put($file, $responce->getBinaryString());
+        $this->get($url);
     }
 
-    private function video($tweet, $medium)
+    /**
+     * @param $medium
+     */
+    private function video($medium)
     {
         $variants = collect($medium->video_info->variants);
 
@@ -131,15 +131,25 @@ class Download extends Command
             return $v->bitrate;
         })->last();
 
-        Log::info($tweet->user->name . ' - ' . $video->url);
+        $url = $video->url;
+
+        $this->get($url);
+    }
+
+    /**
+     * @param string $url
+     */
+    private function get(string $url)
+    {
+        Log::info($url);
 
         /**
          * @var \mpyw\Cowitter\Media $responce
          */
-        $responce = $this->twitter->getOut($video->url);
+        $responce = $this->twitter->getOut($url);
 
-        $url = parse_url($video->url, PHP_URL_PATH);
-        $file = pathinfo($url, PATHINFO_BASENAME);
+        $path = parse_url($url, PHP_URL_PATH);
+        $file = pathinfo($path, PATHINFO_BASENAME);
 
         Storage::cloud()->put($file, $responce->getBinaryString());
     }
