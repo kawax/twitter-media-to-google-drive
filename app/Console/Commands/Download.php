@@ -73,7 +73,7 @@ class Download extends Command
             $since_id = 0;
         }
 
-        Log::info('since_id: ' . $since_id);
+        Log::info('since_id start: ' . $since_id);
 
         $tweets = $this->twitter->get('statuses/home_timeline', $options);
 
@@ -105,7 +105,7 @@ class Download extends Command
         });
 
         Storage::disk('local')->put('since_id', $since_id);
-        Log::info('since_id: ' . $since_id);
+        Log::info('since_id end: ' . $since_id);
     }
 
     /**
