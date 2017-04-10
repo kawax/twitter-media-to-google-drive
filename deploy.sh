@@ -7,5 +7,5 @@ git reset --hard origin/master
 #php artisan route:cache
 php artisan config:cache
 sudo chown -R apache:www ./
-sudo chmod 700 -R ./storage/
-sudo chmod 700 -R ./bootstrap/cache/
+sudo chmod 770 -R ./storage/
+sudo chmod 770 -R ./bootstrap/cache/
