@@ -9,3 +9,5 @@ Homestead.json
 Homestead.yaml
 .env
 Vagrantfile
+npm-debug.log
+yarn-error.log
