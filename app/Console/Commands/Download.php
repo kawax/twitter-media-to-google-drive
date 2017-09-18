@@ -9,9 +9,7 @@ use mpyw\Co\CURLException;
 use mpyw\Cowitter\Client;
 use mpyw\Cowitter\HttpException;
 
-use Log;
 use Storage;
-use Cache;
 
 class Download extends Command
 {
@@ -68,20 +66,15 @@ class Download extends Command
         if (Storage::disk('local')->exists('since_id')) {
             $since_id = Storage::disk('local')->get('since_id');
             $options['since_id'] = $since_id;
-            //            $this->info('since_id: ' . $since_id);
         } else {
             $since_id = 0;
         }
 
-        Log::info('since_id start: ' . $since_id);
+        info('since_id start: ' . $since_id);
 
         $tweets = $this->twitter->get('statuses/home_timeline', $options);
 
-        $tweets = collect($tweets);
-
-        //        dd($tweets);
-
-        $tweets->each(function ($tweet) use (&$since_id) {
+        collect($tweets)->each(function ($tweet) use (&$since_id) {
             if ($since_id < $tweet->id) {
                 $since_id = $tweet->id;
             }
@@ -96,29 +89,33 @@ class Download extends Command
 
             $media = $tweet->extended_entities->media;
             foreach ($media as $medium) {
-                if ($medium->type == 'photo') {
+                if ($medium->type === 'photo') {
                     $this->photo($medium);
-                } elseif ($medium->type == 'video') {
+                } elseif ($medium->type === 'video') {
                     $this->video($medium);
                 }
             }
         });
 
         Storage::disk('local')->put('since_id', $since_id);
-        Log::info('since_id end: ' . $since_id);
+        info('since_id end: ' . $since_id);
     }
 
     /**
+     * 画像
+     *
      * @param $medium
      */
     private function photo($medium)
     {
         $url = $medium->media_url_https;
 
-        $this->get($url);
+        $this->download($url);
     }
 
     /**
+     * 動画
+     *
      * @param $medium
      */
     private function video($medium)
@@ -133,15 +130,17 @@ class Download extends Command
 
         $url = $video->url;
 
-        $this->get($url);
+        $this->download($url);
     }
 
     /**
+     * ファイルをダウンロードして保存
+     *
      * @param string $url
      */
-    private function get(string $url)
+    private function download(string $url)
     {
-        Log::info($url);
+        info($url);
 
         /**
          * @var \mpyw\Cowitter\Media $responce
