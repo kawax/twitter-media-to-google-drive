@@ -947,16 +947,16 @@
         },
         {
             "name": "laravel/framework",
-            "version": "v5.5.4",
+            "version": "v5.5.9",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "d3e0493bead126cf7fb9a005c64e6b58a9190e51"
+                "reference": "a0fdfd2c90318c107b6a8d69189ec9a6607379e3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/d3e0493bead126cf7fb9a005c64e6b58a9190e51",
-                "reference": "d3e0493bead126cf7fb9a005c64e6b58a9190e51",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/a0fdfd2c90318c107b6a8d69189ec9a6607379e3",
+                "reference": "a0fdfd2c90318c107b6a8d69189ec9a6607379e3",
                 "shasum": ""
             },
             "require": {
@@ -1075,7 +1075,7 @@
                 "framework",
                 "laravel"
             ],
-            "time": "2017-09-13T13:36:29+00:00"
+            "time": "2017-09-20T13:45:36+00:00"
         },
         {
             "name": "laravel/tinker",
@@ -1612,16 +1612,16 @@
         },
         {
             "name": "nao-pon/flysystem-google-drive",
-            "version": "1.1.5",
+            "version": "1.1.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nao-pon/flysystem-google-drive.git",
-                "reference": "099952d54ad8f7137fe287a1eff757fecaf3d35a"
+                "reference": "3b38384854be414061224d8e37bec9ae8a967d52"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nao-pon/flysystem-google-drive/zipball/099952d54ad8f7137fe287a1eff757fecaf3d35a",
-                "reference": "099952d54ad8f7137fe287a1eff757fecaf3d35a",
+                "url": "https://api.github.com/repos/nao-pon/flysystem-google-drive/zipball/3b38384854be414061224d8e37bec9ae8a967d52",
+                "reference": "3b38384854be414061224d8e37bec9ae8a967d52",
                 "shasum": ""
             },
             "require": {
@@ -1657,7 +1657,7 @@
                 }
             ],
             "description": "Flysystem adapter for Google Drive",
-            "time": "2017-07-14T05:56:35+00:00"
+            "time": "2017-08-18T08:45:18+00:00"
         },
         {
             "name": "nesbot/carbon",
