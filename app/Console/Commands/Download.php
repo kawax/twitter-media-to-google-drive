@@ -143,13 +143,13 @@ class Download extends Command
         info($url);
 
         /**
-         * @var \mpyw\Cowitter\Media $responce
+         * @var \mpyw\Cowitter\Media $response
          */
-        $responce = $this->twitter->getOut($url);
+        $response = $this->twitter->getOut($url);
 
         $path = parse_url($url, PHP_URL_PATH);
         $file = pathinfo($path, PATHINFO_BASENAME);
 
-        Storage::cloud()->put($file, $responce->getBinaryString());
+        Storage::cloud()->put($file, $response->getBinaryString());
     }
 }
