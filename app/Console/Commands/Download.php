@@ -153,7 +153,7 @@ class Download extends Command
         $file = pathinfo($path, PATHINFO_BASENAME);
 
         // Google Drive
-        //        Storage::cloud()->put($file, $response->getBinaryString());
+        Storage::cloud()->put($file, $response->getBinaryString());
 
         //Google Photos
         $this->putPhotos($file, $response->getBinaryString());
