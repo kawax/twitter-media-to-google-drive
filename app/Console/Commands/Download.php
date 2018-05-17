@@ -175,7 +175,8 @@ class Download extends Command
         try {
             $uploadToken = Photos::setAccessToken($token)->upload($name, $file);
 
-            Photos::batchCreate([$uploadToken], config('photos.album_id'));
+            Photos::batchCreate([$uploadToken]);
+            //, config('photos.album_id')
         } catch (\Exception $e) {
             logger()->error($e->getMessage());
         }
