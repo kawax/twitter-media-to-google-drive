@@ -169,7 +169,7 @@ class Download extends Command
             'access_token'  => config('photos.access_token'),
             'refresh_token' => config('photos.refresh_token'),
             'expires_in'    => 3600,
-            'created'       => now()->subDay(),
+            'created'       => now()->subDay()->getTimestamp(),
         ];
 
         try {
