@@ -11,6 +11,8 @@ use mpyw\Cowitter\HttpException;
 
 use Storage;
 
+use Photos;
+
 class Download extends Command
 {
     /**
@@ -150,6 +152,32 @@ class Download extends Command
         $path = parse_url($url, PHP_URL_PATH);
         $file = pathinfo($path, PATHINFO_BASENAME);
 
-        Storage::cloud()->put($file, $response->getBinaryString());
+        // Google Drive
+        //        Storage::cloud()->put($file, $response->getBinaryString());
+
+        //Google Photos
+        $this->putPhotos($file, $response->getBinaryString());
+    }
+
+    /**
+     * @param $name
+     * @param $file
+     */
+    private function putPhotos($name, $file)
+    {
+        $token = [
+            'access_token'  => config('photos.access_token'),
+            'refresh_token' => config('photos.refresh_token'),
+            'expires_in'    => 3600,
+            'created'       => now()->subDay(),
+        ];
+
+        try {
+            $uploadToken = Photos::setAccessToken($token)->upload($name, $file);
+
+            Photos::batchCreate([$uploadToken], config('photos.album_id'));
+        } catch (\Exception $e) {
+            logger()->error($e->getMessage());
+        }
     }
 }

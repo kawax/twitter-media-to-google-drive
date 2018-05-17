@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "2e30ff49e27ffa7ef0da08c37a209393",
+    "content-hash": "c6b8f402d2d4f919855106a9aa8db423",
     "packages": [
         {
             "name": "barryvdh/laravel-debugbar",
@@ -2217,6 +2217,66 @@
             "time": "2018-04-18T12:32:50+00:00"
         },
         {
+            "name": "pulkitjalan/google-apiclient",
+            "version": "3.1.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/pulkitjalan/google-apiclient.git",
+                "reference": "dcb8665faf5f5600e29a8633a94c5f69d5978b9d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/pulkitjalan/google-apiclient/zipball/dcb8665faf5f5600e29a8633a94c5f69d5978b9d",
+                "reference": "dcb8665faf5f5600e29a8633a94c5f69d5978b9d",
+                "shasum": ""
+            },
+            "require": {
+                "google/apiclient": "^2.0",
+                "illuminate/support": "~5",
+                "php": ">=5.4.0"
+            },
+            "require-dev": {
+                "mockery/mockery": "0.9.*",
+                "phpunit/phpunit": "4.*"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "3.0.x-dev"
+                },
+                "laravel": {
+                    "providers": [
+                        "PulkitJalan\\Google\\GoogleServiceProvider"
+                    ],
+                    "aliases": {
+                        "Google": "PulkitJalan\\Google\\Facades\\Google"
+                    }
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "PulkitJalan\\Google\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Pulkit Jalan"
+                }
+            ],
+            "description": "Google api php client wrapper with Cloud Platform and Laravel 4 & 5 support",
+            "homepage": "https://github.com/pulkitjalan/google-apiclient",
+            "keywords": [
+                "cloud platform",
+                "google",
+                "laravel"
+            ],
+            "time": "2017-08-24T11:58:12+00:00"
+        },
+        {
             "name": "ramsey/uuid",
             "version": "3.7.3",
             "source": {
@@ -2341,6 +2401,65 @@
                 "promises"
             ],
             "time": "2017-03-25T12:08:31+00:00"
+        },
+        {
+            "name": "revolution/laravel-google-photos",
+            "version": "1.0.6",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/kawax/laravel-google-photos.git",
+                "reference": "9ac4f8ab9d9dbf2bf9965795ad493e002785669f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/kawax/laravel-google-photos/zipball/9ac4f8ab9d9dbf2bf9965795ad493e002785669f",
+                "reference": "9ac4f8ab9d9dbf2bf9965795ad493e002785669f",
+                "shasum": ""
+            },
+            "require": {
+                "google/apiclient-services": "^0.59.0",
+                "guzzlehttp/guzzle": "^6.3",
+                "php": ">=7.0.0",
+                "pulkitjalan/google-apiclient": "^3.1"
+            },
+            "require-dev": {
+                "mockery/mockery": "^1.0",
+                "orchestra/testbench": "~3.5",
+                "phpunit/phpunit": "^6.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Revolution\\Google\\Photos\\Providers\\PhotosServiceProvider"
+                    ],
+                    "aliases": {
+                        "Photos": "Revolution\\Google\\Photos\\Facades\\Photos"
+                    }
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Revolution\\Google\\Photos\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "kawax",
+                    "email": "kawaxbiz@gmail.com"
+                }
+            ],
+            "description": "Google Photos API for Laravel",
+            "keywords": [
+                "google",
+                "laravel",
+                "photos"
+            ],
+            "time": "2018-05-15T01:39:01+00:00"
         },
         {
             "name": "swiftmailer/swiftmailer",
@@ -3581,16 +3700,16 @@
         },
         {
             "name": "laravel/homestead",
-            "version": "v7.4.2",
+            "version": "v7.6.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/homestead.git",
-                "reference": "3c73add39c20e027e18e3a1269a99a48850c066e"
+                "reference": "860e3cde271e5af46f82c3308f018b1f258dd014"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/homestead/zipball/3c73add39c20e027e18e3a1269a99a48850c066e",
-                "reference": "3c73add39c20e027e18e3a1269a99a48850c066e",
+                "url": "https://api.github.com/repos/laravel/homestead/zipball/860e3cde271e5af46f82c3308f018b1f258dd014",
+                "reference": "860e3cde271e5af46f82c3308f018b1f258dd014",
                 "shasum": ""
             },
             "require": {
@@ -3627,7 +3746,7 @@
                 }
             ],
             "description": "A virtual machine for web artisans.",
-            "time": "2018-05-09T13:01:46+00:00"
+            "time": "2018-05-16T14:35:23+00:00"
         },
         {
             "name": "mockery/mockery",
