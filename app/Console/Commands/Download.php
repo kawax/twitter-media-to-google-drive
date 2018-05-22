@@ -3,15 +3,9 @@
 namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
-
-use mpyw\Co\Co;
-use mpyw\Co\CURLException;
 use mpyw\Cowitter\Client;
-use mpyw\Cowitter\HttpException;
-
-use Storage;
-
 use Photos;
+use Storage;
 
 class Download extends Command
 {
@@ -72,7 +66,7 @@ class Download extends Command
             $since_id = 0;
         }
 
-        info('since_id start: ' . $since_id);
+        info('since_id start: '.$since_id);
 
         $tweets = $this->twitter->get('statuses/home_timeline', $options);
 
@@ -100,11 +94,11 @@ class Download extends Command
         });
 
         Storage::disk('local')->put('since_id', $since_id);
-        info('since_id end: ' . $since_id);
+        info('since_id end: '.$since_id);
     }
 
     /**
-     * 画像
+     * 画像.
      *
      * @param $medium
      */
@@ -116,7 +110,7 @@ class Download extends Command
     }
 
     /**
-     * 動画
+     * 動画.
      *
      * @param $medium
      */
@@ -136,7 +130,7 @@ class Download extends Command
     }
 
     /**
-     * ファイルをダウンロードして保存
+     * ファイルをダウンロードして保存.
      *
      * @param string $url
      */
@@ -145,7 +139,7 @@ class Download extends Command
         info($url);
 
         /**
-         * @var \mpyw\Cowitter\Media $response
+         * @var \mpyw\Cowitter\Media
          */
         $response = $this->twitter->getOut($url);
 
